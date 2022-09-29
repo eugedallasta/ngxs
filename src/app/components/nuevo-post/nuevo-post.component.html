@@ -1,0 +1,17 @@
+<input
+  type="text"
+  class="form-control form-control-lg"
+  placeholder="Ingrese nombre"
+  [(ngModel)]="nombre"
+/>
+<textarea
+  class="form-control form-control-lg mt-2"
+  placeholder="Ingrese descripción"
+  rows="3"
+  [(ngModel)]="descripcion"
+></textarea>
+<div class="d-grid gap-2">
+  <button (click)="agregarPost()" class="btn btn-secondary btn-lg mt-2">
+    Agregar
+  </button>
+</div>
