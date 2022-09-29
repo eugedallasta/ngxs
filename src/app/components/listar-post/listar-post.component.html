@@ -1,9 +1,12 @@
-<div class="card">
+<div class="card mb-2" *ngFor="let item of listPosts">
   <div class="card-body">
-    <h6>Titulo</h6>
-    <em>descripcion</em>
+    <h6>{{ item.nombre }}</h6>
+    <em>{{ item.descripcion }}</em>
     <div class="d-grid gap-2 mt-2">
-      <button class="btn btn-danger">Eliminar</button>
+      <button (click)="eliminarPost(item.id)" class="btn btn-danger">
+        Eliminar
+      </button>
     </div>
   </div>
 </div>
+<p *ngIf="listPosts.length === 0">No hay post para mostrar</p>
