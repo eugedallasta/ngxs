@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/interface/post';
+import { EliminarPost } from 'src/app/store/posts.actions';
 
 @Component({
   selector: 'app-listar-post',
@@ -7,26 +11,20 @@ import { Post } from 'src/app/interface/post';
   styleUrls: ['./listar-post.component.css']
 })
 export class ListarPostComponent implements OnInit {
-  listPosts: Post[] = [
-    {
-      id: 'grfrfr-fr',
-      nombre: 'Post 1',
-      descripcion: 'Contenido del post 1',
-    },
-    {
-      id: '2',
-      nombre: 'Post 2',
-      descripcion: 'Contenido del post 2'
-    }
-  ];
 
-  constructor() { }
+  post$: Observable<Post[]>;
+
+  constructor(private store: Store, private toastr: ToastrService) {
+    this.post$ = this.store.select(state => state.posts.listPosts);
+  }
+
 
   ngOnInit(): void {
   }
 
   eliminarPost(id: string) {
-    this.listPosts = this.listPosts.filter(post => post.id !== id);
+    this.store.dispatch(new EliminarPost(id));
+    this.toastr.info('Post eliminado correctamente', 'Eliminado');
   }
 
 }

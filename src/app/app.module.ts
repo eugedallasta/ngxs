@@ -10,6 +10,7 @@ import { ListarPostComponent } from './components/listar-post/listar-post.compon
 import { NuevoPostComponent } from './components/nuevo-post/nuevo-post.component';
 import { environment } from 'src/environments/environment';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { PostState } from './store/posts.state';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxsModule.forRoot([], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([PostState], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     NgxsLoggerPluginModule.forRoot({ disabled: environment.production })
   ],
